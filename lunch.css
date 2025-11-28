@@ -1,0 +1,96 @@
+.menu-section {
+  margin-bottom: 40px;
+}
+
+
+
+.dishes-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.dish {
+  display: flex;                 
+  flex-direction: column;       
+  justify-content: space-between;
+  padding: 30px 40px;
+  border-radius: 35px;
+  background-color: #ffffff;
+  cursor: pointer;
+  filter: drop-shadow(17px 19px 24px rgba(0, 0, 0, 0.13));
+  border: 2px solid transparent; 
+  transition: border 0.2s ease;
+  max-width: 350px;  
+  margin: 0 auto;     
+}
+
+
+.dish:hover {
+  border: 2px solid tomato;
+}
+
+.dish:hover button {
+  background-color: tomato;
+  color: #ffffff;
+}
+
+.dish img {
+  width: 100%;         
+  height: auto;
+  border-radius: 35px;
+  margin-bottom: 15px;
+}
+
+.dish-price {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 10px 0 4px;
+}
+
+.dish-name {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.dish-weight {
+  font-size: 14px;
+  color: #777777; 
+  margin-bottom: 12px;
+}
+
+.dish button {
+  background-color: #f1eee9;
+  margin-top: 10px;
+  padding: 10px 30px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  align-self: flex-start;     
+}
+
+@media (max-width: 800px) {
+  .dishes-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  
+
+  .dishes-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.menu-section h2 {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0 auto 30px auto;
+  text-align: center;
+  width: 100%;
+}
