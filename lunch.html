@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Сделать заказ — LunchTime</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="lunch.css">
+</head>
+<body>
+
+<header>
+  <div class="container header-content">
+    <h1>Собрать ланч</h1>
+    <nav>
+      <a href="index.html">Главная</a>
+      <a href="lunch.html" id="active">Сделать заказ</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- Блоки блюд -->
+  <section class="menu-section">
+    <h2>Супы</h2>
+    <div class="dishes-grid" id="soups"></div>
+  </section>
+
+  <section class="menu-section">
+    <h2>Главные блюда</h2>
+    <div class="dishes-grid" id="mains"></div>
+  </section>
+
+  <section class="menu-section">
+    <h2>Напитки</h2>
+    <div class="dishes-grid" id="drinks"></div>
+  </section>
+
+  <!-- Форма заказа -->
+  <section class="order-section">
+    <h2>Сделать заказ</h2>
+    <form action="https://httpbin.org/post" method="POST">
+      <div class="form-block">
+        <h3>Ваш заказ</h3>
+        <div id="order-list">Ничего не выбрано</div>
+        <div id="total" style="display:none;"></div>
+
+        <label for="comment">Комментарий к заказу:</label>
+        <textarea id="comment" name="comment" placeholder="Ваши пожелания..."></textarea>
+      </div>
+
+      <div class="form-block">
+        <h3>Ваши данные</h3>
+        <label for="name">Имя:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="phone">Номер телефона:</label>
+        <input type="tel" id="phone" name="phone" required>
+
+        <label for="address">Адрес доставки:</label>
+        <input type="text" id="address" name="address" required>
+
+        <label>Время доставки:</label>
+        <div class="radio-group">
+          <input type="radio" id="asap" name="time" value="asap" checked>
+          <label for="asap">Как можно скорее</label>
+        </div>
+        <div class="radio-group">
+          <input type="radio" id="exact" name="time" value="exact">
+          <label for="exact">К указанному времени</label>
+        </div>
+
+        <!-- Новое поле -->
+        <div id="time-input" style="display:none;">
+          <label for="delivery-time">Укажите время доставки:</label>
+          <input type="time" id="delivery-time" name="delivery-time" min="07:00" max="23:00">
+          <small>Доступное время доставки с 7:00 до 23:00</small>
+        </div>
+
+        <div class="buttons">
+          <button type="reset">Сбросить</button>
+          <button type="submit">Отправить</button>
+        </div>
+      </div>
+    </form>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-content">
+    <p>© 2025 LunchTime — доставка бизнес-ланчей</p>
+  </div>
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  // === Данные блюд ===
+  const dishes = [
+    { keyword:"gaspacho", name:"Гаспачо", price:195, count:"350 г", category:"soup", image:"1.png" },
+    { keyword:"mushroom", name:"Грибной суп-пюре", price:185, count:"330 г", category:"soup", image:"2.png" },
+    { keyword:"norwegian", name:"Норвежский суп", price:270, count:"330 г", category:"soup", image:"3.png" },
+    { keyword:"potato_mushrooms", name:"Жареная картошка с грибами", price:150, count:"250 г", category:"main", image:"4.png" },
+    { keyword:"lasagna", name:"Лазанья", price:385, count:"310 г", category:"main", image:"5.png" },
+    { keyword:"cutlets_puree", name:"Котлеты с картофельным пюре", price:225, count:"280 г", category:"main", image:"6.png" },
+    { keyword:"orange_juice", name:"Апельсиновый сок", price:120, count:"300 мл", category:"drink", image:"7.png" },
+    { keyword:"apple_juice", name:"Яблочный сок", price:90, count:"300 мл", category:"drink", image:"8.png" },
+    { keyword:"carrot_juice", name:"Морковный сок", price:110, count:"300 мл", category:"drink", image:"9.png" }
+  ];
+
+  // === Сортировка ===
+  const sorted = [...dishes].sort((a,b)=>a.name.localeCompare(b.name));
+
+  const containers = {
+    soup: document.querySelector("#soups"),
+    main: document.querySelector("#mains"),
+    drink: document.querySelector("#drinks")
+  };
+
+  sorted.forEach(dish => {
+    const card = document.createElement("div");
+    card.classList.add("dish");
+    card.dataset.dish = dish.keyword;
+    card.innerHTML = `
+      <img src="${dish.image}" alt="${dish.name}">
+      <div class="dish-info">
+        <p class="dish-price">${dish.price} ₽</p>
+        <p class="dish-name">${dish.name}</p>
+        <p class="dish-weight">${dish.count}</p>
+        <button>Добавить</button>
+      </div>
+    `;
+    containers[dish.category].appendChild(card);
+  });
+
+  // === Выбор блюда и расчёт стоимости ===
+  const order = { soup:null, main:null, drink:null };
+  const list = document.querySelector("#order-list");
+  const total = document.querySelector("#total");
+
+  function render() {
+    let html = "", sum = 0;
+    for (const key in order) {
+      if (order[key]) {
+        html += `<p><strong>${order[key].name}</strong> — ${order[key].price} ₽</p>`;
+        sum += order[key].price;
+      } else {
+        html += `<p>${key === "drink" ? "Напиток не выбран" : "Блюдо не выбрано"}</p>`;
+      }
+    }
+    list.innerHTML = html || "Ничего не выбрано";
+    if (sum > 0) {
+      total.style.display = "block";
+      total.textContent = "Стоимость заказа: " + sum + " ₽";
+    } else total.style.display = "none";
+  }
+
+  document.body.addEventListener("click", e => {
+    if (e.target.tagName === "BUTTON" && e.target.closest(".dish")) {
+      const key = e.target.closest(".dish").dataset.dish;
+      const selected = dishes.find(d => d.keyword === key);
+      order[selected.category] = selected;
+      render();
+    }
+  });
+
+  // === Показ/скрытие поля времени ===
+  const asap = document.querySelector("#asap");
+  const exact = document.querySelector("#exact");
+  const timeInput = document.querySelector("#time-input");
+
+  asap.addEventListener("change", () => {
+    if (asap.checked) timeInput.style.display = "none";
+  });
+
+  exact.addEventListener("change", () => {
+    if (exact.checked) timeInput.style.display = "block";
+  });
+});
+</script>
+
+</body>
+</html>

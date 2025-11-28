@@ -1,0 +1,219 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  background-color: #fafafa;
+  color: #222;
+}
+
+/* === Шапка === */
+header {
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+  padding: 20px 0;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav a {
+  text-decoration: none;
+  color: #333;
+  margin-right: 15px;
+  font-weight: 500;
+}
+
+#active {
+  color: tomato;
+  font-weight: 600;
+}
+
+/* === Карточки блюд === */
+.menu-section {
+  margin: 40px auto;
+  max-width: 1200px;
+  padding: 0 20px;
+}
+
+.menu-section h2 {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.dishes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.dish {
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.dish:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.dish img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.dish-info {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.dish-price {
+  font-weight: 700;
+  font-size: 18px;
+  color: #222;
+  margin-bottom: 5px;
+}
+
+.dish-name {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.dish-weight {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 15px;
+}
+
+.dish button {
+  background-color: #f7f3ef;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 0;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.dish button:hover {
+  background-color: tomato;
+  color: #fff;
+}
+
+/* === Форма заказа === */
+.order-section {
+  background-color: #fff;
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.order-section h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.form-block {
+  flex: 1 1 45%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+label {
+  font-weight: 600;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+#order-list p {
+  margin: 4px 0;
+}
+
+#total {
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+button[type="submit"] {
+  background: tomato;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+button[type="submit"]:hover {
+  background: #ff5533;
+}
+
+button[type="reset"] {
+  background: #f1eee9;
+  color: #333;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+button[type="reset"]:hover {
+  background: #ddd;
+}
+
+footer {
+  background: black;
+  color: white;
+  text-align: center;
+  padding: 25px 0;
+  margin-top: 60px;
+  font-size: 15px;
+}
