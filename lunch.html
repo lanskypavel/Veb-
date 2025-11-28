@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Собрать ланч</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="lunch.css">
+  <style>
+    .order-section {
+      background: #fff;
+      max-width: 1100px;
+      margin: 50px auto;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .order-section h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 28px;
+    }
+
+    form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      justify-content: space-between;
+    }
+
+    .form-block {
+      flex: 1 1 45%;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    label {
+      font-weight: 600;
+    }
+
+    select, input, textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .checkbox-group, .radio-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .buttons {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 10px 25px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+
+    button[type="submit"] {
+      background: tomato;
+      color: #fff;
+    }
+
+    button[type="submit"]:hover {
+      background: #ff6347;
+    }
+
+    button[type="reset"] {
+      background: #f1eee9;
+    }
+
+    button[type="reset"]:hover {
+      background: #ddd;
+    }
+
+    @media (max-width: 800px) {
+      form { flex-direction: column; }
+      .form-block { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container header-content">
+    <h1>Собрать ланч</h1>
+    <nav>
+      <a href="index.html">Главная</a>
+      <a href="lunch.html" id="active">Собрать ланч</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="menu-section">
+    <div class="container">
+      <h2>Супы</h2>
+      <div class="dishes-grid">
+        <div class="dish">
+          <img src="1.png" alt="Гаспачо">
+          <p class="dish-price">195 ₽</p>
+          <p class="dish-name">Гаспачо</p>
+          <p class="dish-weight">350 г</p>
+          <button>Добавить</button>
+        </div>
+        <div class="dish">
+          <img src="2.png" alt="Грибной суп-пюре">
+          <p class="dish-price">185 ₽</p>
+          <p class="dish-name">Грибной суп-пюре</p>
+          <p class="dish-weight">330 г</p>
+          <button>Добавить</button>
+        </div>
+        <div class="dish">
+          <img src="3.png" alt="Норвежский суп">
+          <p class="dish-price">270 ₽</p>
+          <p class="dish-name">Норвежский суп</p>
+          <p class="dish-weight">330 г</p>
+          <button>Добавить</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="menu-section">
+    <div class="container">
+      <h2>Главные блюда</h2>
+      <div class="dishes-grid">
+        <div class="dish">
+          <img src="4.png" alt="Жареная картошка с грибами">
+          <p class="dish-price">150 ₽</p>
+          <p class="dish-name">Жареная картошка с грибами</p>
+          <p class="dish-weight">250 г</p>
+          <button>Добавить</button>
+        </div>
+        <div class="dish">
+          <img src="5.png" alt="Лазанья">
+          <p class="dish-price">385 ₽</p>
+          <p class="dish-name">Лазанья</p>
+          <p class="dish-weight">310 г</p>
+          <button>Добавить</button>
+        </div>
+        <div class="dish">
+          <img src="6.png" alt="Котлеты с картофельным пюре">
+          <p class="dish-price">225 ₽</p>
+          <p class="dish-name">Котлеты с картофельным пюре</p>
+          <p class="dish-weight">280 г</p>
+          <button>Добавить</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="menu-section">
+    <div class="container">
+      <h2>Напитки</h2>
+      <div class="dishes-grid">
+        <div class="dish">
+          <img src="7.png" alt="Апельсиновый сок">
+          <p class="dish-price">120 ₽</p>
+          <p class="dish-name">Апельсиновый сок</p>
+          <p class="dish-weight">300 мл</p>
+          <button>Добавить</button>
+        </div>
+        <div class="dish">
+          <img src="8.png" alt="Яблочный сок">
+          <p class="dish-price">90 ₽</p>
+          <p class="dish-name">Яблочный сок</p>
+          <p class="dish-weight">300 мл</p>
+          <button>Добавить</button>
+        </div>
+        <div class="dish">
+          <img src="9.png" alt="Морковный сок">
+          <p class="dish-price">110 ₽</p>
+          <p class="dish-name">Морковный сок</p>
+          <p class="dish-weight">300 мл</p>
+          <button>Добавить</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="order-section">
+    <h2>Оформить заказ</h2>
+
+    <form action="https://httpbin.org/post" method="POST">
+      <div class="form-block">
+        <h3>Ваш заказ</h3>
+
+        <label for="soup">Выберите суп:</label>
+        <select id="soup" name="soup" required>
+          <option value="">Выберите суп</option>
+          <option value="gaspacho">Гаспачо</option>
+          <option value="mushroom">Грибной суп-пюре</option>
+          <option value="norwegian">Норвежский суп</option>
+        </select>
+
+        <label for="main">Выберите главное блюдо:</label>
+        <select id="main" name="main" required>
+          <option value="">Выберите главное блюдо</option>
+          <option value="potato_mushrooms">Жареная картошка с грибами</option>
+          <option value="lasagna">Лазанья</option>
+          <option value="cutlets_puree">Котлеты с пюре</option>
+        </select>
+
+        <label for="drink">Выберите напиток:</label>
+        <select id="drink" name="drink" required>
+          <option value="">Выберите напиток</option>
+          <option value="orange_juice">Апельсиновый сок</option>
+          <option value="apple_juice">Яблочный сок</option>
+          <option value="carrot_juice">Морковный сок</option>
+        </select>
+
+        <label for="comment">Комментарий:</label>
+        <textarea id="comment" name="comment" placeholder="Ваши пожелания..."></textarea>
+      </div>
+
+      <div class="form-block">
+        <h3>Ваши данные</h3>
+
+        <label for="name">Имя:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <div class="checkbox-group">
+          <input type="checkbox" id="subscribe" name="subscribe" checked>
+          <label for="subscribe">Подписаться на рассылку</label>
+        </div>
+
+        <label for="phone">Телефон:</label>
+        <input type="tel" id="phone" name="phone" required>
+
+        <label for="address">Адрес доставки:</label>
+        <input type="text" id="address" name="address" required>
+
+        <div class="radio-group">
+          <input type="radio" id="delivery_time_yes" name="choose_time" value="yes" required>
+          <label for="delivery_time_yes">Указать время доставки</label>
+        </div>
+
+        <label for="time">Время доставки:</label>
+        <input type="time" id="time" name="time" min="07:00" max="23:00" step="300">
+      </div>
+
+      <div class="buttons">
+        <button type="reset">Сбросить</button>
+        <button type="submit">Отправить</button>
+      </div>
+
+    </form>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-content">
+    <p>© 2025 LunchTime — доставка бизнес-ланчей</p>
+  </div>
+</footer>
+
+</body>
+</html>
